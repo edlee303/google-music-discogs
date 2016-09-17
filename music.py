@@ -9,10 +9,18 @@ api.login(username, password, Mobileclient.FROM_MAC_ADDRESS)
 
 library = api.get_all_songs()
 
-albumIds = []
+albumIdList = []
 
 for i in library:
 	if 'albumId' in i.keys():
-		albumIds.append(i['albumId'])
+		albumIdList.append(i['albumId'])
 
-albumIds = list(set(albumIds))
+albumIdList = list(set(albumIdList))
+
+albumDataList = []
+
+for albumId in albumIdList:
+	albumData = api.get_album_info(albumId)
+	albumDataList.append(albumData)
+
+print len(albumDataList)
