@@ -20,7 +20,10 @@ albumIdList = list(set(albumIdList))
 albumDataList = []
 
 for albumId in albumIdList:
-	albumData = api.get_album_info(albumId)
-	albumDataList.append(albumData)
+	try:
+		albumData = api.get_album_info(albumId,include_tracks=False)
+		albumDataList.append(albumData)
+	except:
+		pass
 
 print len(albumDataList)
